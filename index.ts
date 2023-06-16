@@ -15,7 +15,6 @@ async function main() {
   const page: any = await browser.newPage();
   await page.goto('http://www.reddit.com');
 
-  // Extract data from Reddit's top posts
   const postElements: any[] = await page.$$('div[data-testid="post-container"]');
   const posts: Post[] = [];
 
@@ -35,7 +34,6 @@ async function main() {
     posts.push({ title, link });
   }
 
-  // Save data to post.json
   const jsonData: string = JSON.stringify(posts, null, 2);
   fs.writeFileSync('post.json', jsonData);
 
